@@ -16,7 +16,7 @@ function formatValue(value, depth = 0) {
 }
 
 function stylishFormat(diff, depth = 0) {
-  const currentIndent = '    '.repeat(depth + 1);
+  const currentIndent = '    '.repeat(depth);
 
   const getPrefix = (status) => ({
     added: '+ ',

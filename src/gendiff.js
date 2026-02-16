@@ -1,4 +1,4 @@
-import { union, sortBy } from 'lodash';
+import * as _ from 'lodash';
 import resolveAndRead, { isJSON, isYAML } from './files.js';
 import parsers from './parsers/index.js';
 import formatters from './formatters/index.js';
@@ -14,7 +14,7 @@ function isObject(value) {
 }
 
 export function buildDiff(obj1, obj2) {
-  const keys = sortBy(union(Object.keys(obj1), Object.keys(obj2)));
+  const keys = _.sortBy(_.union(Object.keys(obj1), Object.keys(obj2)));
   const result = [];
 
   for (const key of keys) {
