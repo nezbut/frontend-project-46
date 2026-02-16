@@ -1,5 +1,5 @@
-import parseJSON from "./json";
-import parseYAML from "./yaml";
+import parseJSON from "./json.js";
+import parseYAML from "./yaml.js";
 
 const parsers = {
   yaml: parseYAML, yml: parseYAML,
