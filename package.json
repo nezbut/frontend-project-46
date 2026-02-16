@@ -3,10 +3,21 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
+  "main": "./src/gendiff.js",
+  "bin": {
+    "hexlet-gendiff": "./index.js"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "lint": "eslint ."
+  },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "eslint": "^10.0.0",
+    "vitest": "^4.0.18"
   },
   "dependencies": {
-    "commander": "^14.0.3"
+    "commander": "^14.0.3",
+    "lodash": "^4.17.23"
   }
 }
