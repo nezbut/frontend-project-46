@@ -1,0 +1,12 @@
+{
+  "name": "@hexlet/code",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "dependencies": {
+    "commander": "^14.0.3"
+  }
+}
