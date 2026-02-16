@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { buildDiff } from './gendiff';
+import { buildDiff } from './gendiff.js';
 
 describe('buildDiff', () => {
   it('should return unchanged keys with unchanged status', () => {

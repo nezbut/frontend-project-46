@@ -1,7 +1,7 @@
 import { union, sortBy } from 'lodash';
-import resolveAndRead, { isJSON, isYAML } from './files';
-import parsers from './parsers/index';
-import formatters from './formatters/index';
+import resolveAndRead, { isJSON, isYAML } from './files.js';
+import parsers from './parsers/index.js';
+import formatters from './formatters/index.js';
 
 function getFileType(filepath) {
   if (isYAML(filepath)) return 'yaml'

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import stylish from './stylish';
+import stylish from './stylish.js';
 
 describe('stylish formatter', () => {
   it('should format unchanged keys with space prefix', () => {

@@ -1,6 +1,6 @@
-import stylish from './stylish';
-import plain from './plain';
-import jsonFormatter from './json';
+import stylish from './stylish.js';
+import plain from './plain.js';
+import jsonFormatter from './json.js';
 
 const formatters = {
   stylish,

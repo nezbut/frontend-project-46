@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import plain from './plain';
+import plain from './plain.js';
 
 describe('plain formatter', () => {
   it('should format added property', () => {

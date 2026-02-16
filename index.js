@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
-import genDiff from "./src/gendiff";
+import genDiff from "./src/gendiff.js";
 
 const DefaultOutFormat = 'stylish';
 const program = new Command();

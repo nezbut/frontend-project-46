@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import parseJSON from './json';
+import parseJSON from './json.js';
 
 describe('parseJSON', () => {
   it('should parse JSON string to object', () => {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import jsonFormatter from './json';
+import jsonFormatter from './json.js';
 
 describe('json formatter', () => {
   it('should return valid JSON string', () => {
