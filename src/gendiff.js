@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import _ from 'lodash';
 import resolveAndRead, { isJSON, isYAML } from './files.js';
 import parsers from './parsers/index.js';
 import formatters from './formatters/index.js';
