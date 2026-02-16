@@ -5,7 +5,7 @@
   "private": true,
   "main": "./src/gendiff.js",
   "bin": {
-    "hexlet-gendiff": "./index.js"
+    "gendiff": "./index.js"
   },
   "scripts": {
     "test": "vitest run",
