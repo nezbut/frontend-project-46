@@ -20,14 +20,11 @@ function plainFormat(diff, path = '') {
 
     if (item.status === 'added') {
       lines.push(`Property '${currentPath}' was added with value: ${formatValue(item.value)}`)
-    }
- else if (item.status === 'removed') {
+    } else if (item.status === 'removed') {
       lines.push(`Property '${currentPath}' was removed`)
-    }
- else if (item.status === 'changed') {
+    } else if (item.status === 'changed') {
       lines.push(`Property '${currentPath}' was updated. From ${formatValue(item.oldValue)} to ${formatValue(item.value)}`)
-    }
- else if (item.status === 'nested') {
+    } else if (item.status === 'nested') {
       lines.push(plainFormat(item.children, currentPath))
     }
   }

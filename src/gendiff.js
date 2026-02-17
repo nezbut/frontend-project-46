@@ -24,30 +24,24 @@ export function buildDiff(obj1, obj2) {
     if (val1 === undefined && val2 !== undefined) {
       if (isObject(val2)) {
         result.push({ key, status: 'added', value: val2, children: buildDiff({}, val2) })
-      }
- else {
+      } else {
         result.push({ key, status: 'added', value: val2 })
       }
-    }
- else if (val1 !== undefined && val2 === undefined) {
+    } else if (val1 !== undefined && val2 === undefined) {
       if (isObject(val1)) {
         result.push({ key, status: 'removed', value: val1, children: buildDiff(val1, {}) })
-      }
- else {
+      } else {
         result.push({ key, status: 'removed', value: val1 })
       }
-    }
- else if (isObject(val1) && isObject(val2)) {
+    } else if (isObject(val1) && isObject(val2)) {
       result.push({
         key,
         status: 'nested',
         children: buildDiff(val1, val2),
       })
-    }
- else if (val1 !== val2) {
+    } else if (val1 !== val2) {
       result.push({ key, status: 'changed', value: val2, oldValue: val1 })
-    }
- else {
+    } else {
       result.push({ key, status: 'unchanged', value: val1 })
     }
   }
@@ -56,7 +50,7 @@ export function buildDiff(obj1, obj2) {
 }
 
 export default function genDiff(filepath1, filepath2, outFormat = 'stylish') {
-  const [file1, file2] = [filepath1, filepath2].map((filepath) => {
+  const [file1, file2] = [filepath1, filepath2].map(filepath => {
     const fileType = getFileType(filepath)
     if (fileType === undefined) {
       throw new Error(`unsupported file type: ${filepath}`)
