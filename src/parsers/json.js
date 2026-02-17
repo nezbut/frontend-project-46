@@ -1,3 +1,3 @@
 export default function parseJSON(rawContent) {
-  return JSON.parse(rawContent);
+  return JSON.parse(rawContent)
 }

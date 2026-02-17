@@ -1,17 +1,17 @@
-import fs from "fs";
-import path from "path";
+import fs from 'fs'
+import path from 'path'
 
 export default function resolveAndRead(rawFilepath) {
-  return readFile(resolvePath(rawFilepath));
+  return readFile(resolvePath(rawFilepath))
 }
 
-export const isJSON = filepath => filepath.toLowerCase().endsWith('.json')
-export const isYAML = filepath => filepath.toLowerCase().endsWith('.yaml') || filepath.toLowerCase().endsWith('.yml')
+export const isJSON = (filepath) => filepath.toLowerCase().endsWith('.json')
+export const isYAML = (filepath) => filepath.toLowerCase().endsWith('.yaml') || filepath.toLowerCase().endsWith('.yml')
 
 export function resolvePath(rawFilepath) {
-  return path.resolve(process.cwd(), rawFilepath);
+  return path.resolve(process.cwd(), rawFilepath)
 }
 
 export function readFile(filepath) {
-  return fs.readFileSync(filepath);
+  return fs.readFileSync(filepath)
 }

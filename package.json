@@ -9,9 +9,11 @@
   },
   "scripts": {
     "test": "vitest run",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "devDependencies": {
+    "@stylistic/eslint-plugin": "^5.8.0",
     "@types/bun": "latest",
     "eslint": "^10.0.0",
     "vitest": "^4.0.18"

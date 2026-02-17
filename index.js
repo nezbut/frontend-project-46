@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import { Command } from "commander";
-import genDiff from "./src/gendiff.js";
+import { Command } from 'commander'
+import genDiff from './src/gendiff.js'
 
-const DefaultOutFormat = 'stylish';
-const program = new Command();
+const DefaultOutFormat = 'stylish'
+const program = new Command()
 
 program
   .name('gendiff')
@@ -14,12 +14,13 @@ program
   .option('-f, --format [type]', 'output format')
   .action((filepath1, filepath2, options) => {
     try {
-      const outFormat = options.format || DefaultOutFormat;
-      const result = genDiff(filepath1, filepath2, outFormat);
-      console.log(result);
-    } catch (error) {
-      program.error(`Error: ${error.message}`);
+      const outFormat = options.format || DefaultOutFormat
+      const result = genDiff(filepath1, filepath2, outFormat)
+      console.log(result)
     }
-  });
+ catch (error) {
+      program.error(`Error: ${error.message}`)
+    }
+  })
 
-program.parse(process.argv);
+program.parse(process.argv)

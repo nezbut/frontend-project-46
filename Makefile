@@ -9,5 +9,8 @@ build:
 lint:
 	@bun run lint
 
+lint-fix:
+	@bun run lint:fix
+
 test:
 	@bun run test
