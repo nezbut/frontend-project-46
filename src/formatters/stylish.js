@@ -34,7 +34,7 @@ function formatValue(value, depth) {
 }
 
 function stylishFormat(diff, depth = 1) {
-  const lines = diff.map(item => {
+  const lines = diff.map((item) => {
     if (item.status === 'nested' && item.children) {
       const indent = getNestedIndent(depth)
       const children = stylishFormat(item.children, depth + 1)

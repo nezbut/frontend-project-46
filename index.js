@@ -17,7 +17,8 @@ program
       const outFormat = options.format || DefaultOutFormat
       const result = genDiff(filepath1, filepath2, outFormat)
       console.log(result)
-    } catch (error) {
+    }
+    catch (error) {
       program.error(`Error: ${error.message}`)
     }
   })
