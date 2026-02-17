@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import stylish from './stylish.js';
+import genDiff from '../gendiff.js';
+import { resolvePath } from '../files.js';
 
 describe('stylish formatter', () => {
   it('should format unchanged keys with space prefix', () => {
@@ -47,5 +49,57 @@ describe('stylish formatter', () => {
     const result = stylish(diff);
     expect(result.startsWith('{')).toBe(true);
     expect(result.endsWith('}')).toBe(true);
+  });
+
+  it('should keep indentation for nested structures', () => {
+    const filepath1 = resolvePath('__fixtures__/nested/file1.json');
+    const filepath2 = resolvePath('__fixtures__/nested/file2.json');
+
+    const expected = `{
+    common: {
+      + follow: false
+        setting1: Value 1
+      - setting2: 200
+      - setting3: true
+      + setting3: null
+      + setting4: blah blah
+      + setting5: {
+            key5: value5
+        }
+        setting6: {
+            doge: {
+              - wow: 
+              + wow: so much
+            }
+            key: value
+          + ops: vops
+        }
+    }
+    group1: {
+      - baz: bas
+      + baz: bars
+        foo: bar
+      - nest: {
+            key: value
+        }
+      + nest: str
+    }
+  - group2: {
+        abc: 12345
+        deep: {
+            id: 45
+        }
+    }
+  + group3: {
+        deep: {
+            id: {
+                number: 45
+            }
+        }
+        fee: 100500
+    }
+}`;
+
+    expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(expected);
   });
 });

@@ -1,42 +1,61 @@
+const INDENT_SIZE = 4;
+const SIGN_OFFSET = 2;
+
 function isComplexValue(value) {
   return typeof value === 'object' && value !== null;
 }
 
-function formatValue(value, depth = 0) {
-  if (value === null) return 'null';
-  if (isComplexValue(value)) {
-    const indent = '    '.repeat(depth);
-    const entries = Object.entries(value).map(([k, v]) => {
-      return `${indent}    ${k}: ${formatValue(v, depth + 1)}`;
-    });
-    return `{\n${entries.join('\n')}\n${indent}}`;
-  }
-  return String(value);
+function getSignIndent(depth) {
+  return ' '.repeat((depth - 1) * INDENT_SIZE + SIGN_OFFSET);
 }
 
-function stylishFormat(diff, depth = 0) {
+function getNestedIndent(depth) {
+  return ' '.repeat(depth * INDENT_SIZE);
+}
+
+function getObjectClosingIndent(depth) {
+  return ' '.repeat((depth - 1) * INDENT_SIZE);
+}
+
+function formatValue(value, depth) {
+  if (value === null) {
+    return 'null';
+  }
+
+  if (!isComplexValue(value)) {
+    return String(value);
+  }
+
+  const entries = Object.entries(value).map(([key, itemValue]) => {
+    return `${getNestedIndent(depth)}${key}: ${formatValue(itemValue, depth + 1)}`;
+  });
+
+  return `{\n${entries.join('\n')}\n${getObjectClosingIndent(depth)}}`;
+}
+
+function stylishFormat(diff, depth = 1) {
   const lines = diff.map((item) => {
     if (item.status === 'nested' && item.children) {
-      const indent = ' '.repeat(depth * 4 + 2);
+      const indent = getNestedIndent(depth);
       const children = stylishFormat(item.children, depth + 1);
       return `${indent}${item.key}: {\n${children}\n${indent}}`;
     }
 
-    const baseIndent = ' '.repeat(depth * 4);
+    const baseIndent = getSignIndent(depth);
 
     if (item.status === 'added' && isComplexValue(item.value)) {
-      const formatted = formatValue(item.value, depth);
+      const formatted = formatValue(item.value, depth + 1);
       return `${baseIndent}+ ${item.key}: ${formatted}`;
     }
 
     if (item.status === 'removed' && isComplexValue(item.value)) {
-      const formatted = formatValue(item.value, depth);
+      const formatted = formatValue(item.value, depth + 1);
       return `${baseIndent}- ${item.key}: ${formatted}`;
     }
 
     if (item.status === 'changed') {
-      const oldVal = formatValue(item.oldValue, depth);
-      const newVal = formatValue(item.value, depth);
+      const oldVal = formatValue(item.oldValue, depth + 1);
+      const newVal = formatValue(item.value, depth + 1);
       return `${baseIndent}- ${item.key}: ${oldVal}\n${baseIndent}+ ${item.key}: ${newVal}`;
     }
 
@@ -47,7 +66,7 @@ function stylishFormat(diff, depth = 0) {
       unchanged: '  ',
     }[item.status];
 
-    const value = formatValue(item.value, depth);
+    const value = formatValue(item.value, depth + 1);
     return `${baseIndent}${prefix}${item.key}: ${value}`;
   });
 
@@ -55,5 +74,5 @@ function stylishFormat(diff, depth = 0) {
 }
 
 export default function stylish(diff) {
-  return '{\n' + stylishFormat(diff) + '\n}';
+  return `{\n${stylishFormat(diff)}\n}`
 }
